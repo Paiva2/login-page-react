@@ -1,7 +1,7 @@
 import React from "react";
 
-const UserGreeting = (props) => {
-  return <p>{props.username ? `Welcome ${props.username}!` : "Welcome!"}</p>;
+const UserGreeting = ({ username }) => {
+  return <p>{username ? `Welcome ${username}!` : "Welcome!"}</p>;
 };
 
 export default UserGreeting;
