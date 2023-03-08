@@ -16,6 +16,7 @@ import {
   passWord,
 } from "../store/reducers/userReducer";
 import alert from "./alertValidation";
+import { NavLink } from "react-router-dom";
 
 function Login() {
   const userInput = useRef(null);
@@ -28,8 +29,7 @@ function Login() {
   const checkSignIn = (e) => {
     e.preventDefault();
     if (password !== "admin" && username !== "admin") {
-      alert("error", "Invalid username or password!");
-      return;
+      return alert("error", "Invalid username or password!");
     }
 
     dispatch(authorizeUser(true));
@@ -75,22 +75,33 @@ function Login() {
 
             <p>
               Not a member?
-              <a href="">
+              <NavLink to="/register">
                 <span className="undertextsign">SignUp</span>
-              </a>
+              </NavLink>
             </p>
+
             <span className="socialmedia">
-              <button>
-                <FontAwesomeIcon icon={faFacebook} size="2x" color="#328AEE" />
-              </button>
-              <button>
-                <FontAwesomeIcon icon={faTwitter} size="2x" color="#1DA1F2" />
-              </button>
-              <button>
-                <FontAwesomeIcon icon={faGoogle} size="2x" color="#D14836" />
-              </button>
+              <FontAwesomeIcon
+                className="icon"
+                icon={faFacebook}
+                size="2x"
+                color="#328AEE"
+              />
+              <FontAwesomeIcon
+                className="icon"
+                icon={faTwitter}
+                size="2x"
+                color="#1DA1F2"
+              />
+              <FontAwesomeIcon
+                className="icon"
+                icon={faGoogle}
+                size="2x"
+                color="#D14836"
+              />
             </span>
-            <div className="img-text">
+
+            <div className="footer-text">
               <p>Start your journey with us!</p>
             </div>
           </form>
