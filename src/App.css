@@ -28,6 +28,7 @@ body {
   margin-top: 5%;
   box-shadow: 9px 9px 13px -8px rgba(38, 38, 38, 0.67);
   border-radius: 5px;
+  overflow: hidden;
 }
 
 .form input {
@@ -136,6 +137,7 @@ a:visited {
   height: 100%;
   width: 750px;
   color: white;
+  overflow: hidden;
 }
 
 .welcome-text {

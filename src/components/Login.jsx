@@ -1,6 +1,7 @@
 import { React, useRef } from "react";
 import { useNavigate, NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { Helmet } from "react-helmet";
 import "../App.css";
 import UserGreeting from "./UserGreeting";
 import alert from "./alertValidation";
@@ -53,6 +54,11 @@ function Login() {
 
   return (
     <div className="container">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <html lang="en-US" />
+        <title>Login</title>
+      </Helmet>
       <div className="img-div">
         <div className="welcome-text">
           <UserGreeting

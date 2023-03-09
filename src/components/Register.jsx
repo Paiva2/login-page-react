@@ -5,6 +5,7 @@ import UserGreeting from "./UserGreeting";
 import { IoIosArrowBack } from "react-icons/io";
 import alertValidation from "./alertValidation";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const Register = () => {
   const [username, setUsername] = useState("");
@@ -43,6 +44,11 @@ const Register = () => {
 
   return (
     <div className="container">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <html lang="en-US" />
+        <title>Register</title>
+      </Helmet>
       <div className="img-div">
         <div className="welcome-text">
           <UserGreeting
