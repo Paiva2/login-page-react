@@ -22,19 +22,26 @@ function Login() {
   const passwordInput = useRef(null);
   const username = useSelector((state) => state.userData.username);
   const password = useSelector((state) => state.userData.password);
+  const registeredUsers = useSelector(
+    (state) => state.registerDataBase.userData
+  );
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const checkSignIn = (e) => {
     e.preventDefault();
 
-    if (password !== "admin" && username !== "admin") {
+    for (let i = 0; i < registeredUsers.length; i++) {
+      if (registeredUsers[i].username === username) {
+        if (registeredUsers[i].password === password) {
+          dispatch(authorizeUser(true));
+          navigate("/home");
+          clearUserInfo();
+          return;
+        }
+      }
       return alert("error", "Invalid username or password!");
     }
-
-    navigate("/home");
-    dispatch(authorizeUser(true));
-    clearUserInfo();
   };
 
   const clearUserInfo = () => {
@@ -69,7 +76,7 @@ function Login() {
           />
           <input
             ref={passwordInput}
-            onChange={(e) => dispatch(passWord(e.target.value))}
+            onChange={(e) => dispatch(passWord(+e.target.value))}
             type="password"
             placeholder="Password"
           />

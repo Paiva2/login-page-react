@@ -2,16 +2,16 @@ import React, { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "../store/reducers/registeredUsersReducer";
 import UserGreeting from "./UserGreeting";
+import { IoIosArrowBack } from "react-icons/io";
 import alertValidation from "./alertValidation";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
-  const registeredUsers = useSelector(
-    (state) => state.registerDataBase.userData
-  );
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setconfirmPassword] = useState("");
   const form = useRef();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const registerNewUser = (e) => {
@@ -36,7 +36,10 @@ const Register = () => {
     form.current.reset();
   };
 
-  console.log(registeredUsers);
+  const backHome = () => {
+    resetFormData();
+    navigate("/login");
+  };
 
   return (
     <div className="container">
@@ -82,6 +85,7 @@ const Register = () => {
           </div>
           <div className="footer-text">
             <p>Are u ready to start your journey with us?</p>
+            <IoIosArrowBack onClick={backHome} className="back-icon" />
           </div>
         </form>
       </div>
