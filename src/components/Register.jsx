@@ -26,7 +26,9 @@ const Register = () => {
       return;
     }
 
-    dispatch(registerUser({ username: username, password: password }));
+    dispatch(
+      registerUser({ username: username, password: password.toString() })
+    );
     resetFormData();
   };
 
@@ -47,7 +49,7 @@ const Register = () => {
       <Helmet>
         <meta charSet="utf-8" />
         <html lang="en-US" />
-        <title>Register</title>
+        <title>Wish List</title>
       </Helmet>
       <div className="img-div">
         <div className="welcome-text">

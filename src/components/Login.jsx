@@ -39,9 +39,10 @@ function Login() {
           navigate("/home");
           clearUserInfo();
           return;
+        } else {
+          return alert("error", "Invalid username or password!");
         }
       }
-      return alert("error", "Invalid username or password!");
     }
   };
 
@@ -82,13 +83,15 @@ function Login() {
             onChange={(e) => dispatch(userName(e.target.value))}
             type="text"
             placeholder="Username"
-            maxLength={10}
+            maxLength={30}
+            required
           />
           <input
             ref={passwordInput}
-            onChange={(e) => dispatch(passWord(+e.target.value))}
+            onChange={(e) => dispatch(passWord(e.target.value.toString()))}
             type="password"
             placeholder="Password"
+            required
           />
           <button className="submit" type="submit">
             Sign in
