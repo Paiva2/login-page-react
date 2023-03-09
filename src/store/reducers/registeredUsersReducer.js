@@ -9,7 +9,7 @@ export const userDataBase = createSlice({
   initialState,
   reducers: {
     registerUser: (state, action) => {
-      [...state, action.payload];
+      state.userData = [...state.userData, action.payload];
     },
   },
 });

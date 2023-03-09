@@ -142,6 +142,8 @@ a:visited {
   font-size: 35px;
   user-select: none;
   font-weight: bold;
+  width: 350px;
+  word-break: break-all;
 }
 
 .bottom-text {
