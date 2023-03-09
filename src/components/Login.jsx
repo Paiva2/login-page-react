@@ -1,5 +1,14 @@
-import { React, useState, useRef } from "react";
+import { React, useRef } from "react";
+import { useNavigate, NavLink } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import "../App.css";
+import UserGreeting from "./UserGreeting";
+import alert from "./alertValidation";
+import {
+  authorizeUser,
+  userName,
+  passWord,
+} from "../store/reducers/userReducer";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -7,15 +16,6 @@ import {
   faTwitter,
   faGoogle,
 } from "@fortawesome/free-brands-svg-icons";
-import UserGreeting from "./UserGreeting";
-import { useSelector, useDispatch } from "react-redux";
-import {
-  authorizeUser,
-  userName,
-  passWord,
-} from "../store/reducers/userReducer";
-import alert from "./alertValidation";
-import { useNavigate, NavLink } from "react-router-dom";
 
 function Login() {
   const userInput = useRef(null);
@@ -55,7 +55,11 @@ function Login() {
     <div className="container">
       <div className="img-div">
         <div className="welcome-text">
-          <UserGreeting username={username} />
+          <UserGreeting
+            greetingText={
+              username ? `Welcome back ${username}!` : "Welcome back!"
+            }
+          />
         </div>
         <div className="bottom-text">
           <a href="https://github.com/Paiva2">Check my Github</a>

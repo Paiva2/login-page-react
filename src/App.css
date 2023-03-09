@@ -26,9 +26,8 @@ body {
   text-align: center;
   margin: 0 auto;
   margin-top: 5%;
-  box-shadow: 9px 9px 13px -8px rgba(0, 0, 0, 0.67);
+  box-shadow: 9px 9px 13px -8px rgba(38, 38, 38, 0.67);
   border-radius: 5px;
-  overflow: hidden;
 }
 
 .form input {
@@ -166,17 +165,16 @@ a:visited {
   width: 35px;
   padding: 5px;
   background-color: transparent;
-  border-bottom: 2px solid #d84a56;
+  border-bottom: 3px solid #d84a56;
   cursor: pointer;
 }
 
 .footer-text {
-  user-select: none;
-  margin: 5px;
+  border-bottom: 3px solid #d84a56;
 }
 .footer-text p {
+  user-select: none;
   font-size: 18px;
-  font-weight: bold;
 }
 
 .back-icon {

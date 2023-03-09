@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { registerUser } from "../store/reducers/registeredUsersReducer";
 import UserGreeting from "./UserGreeting";
 import { IoIosArrowBack } from "react-icons/io";
@@ -45,7 +45,11 @@ const Register = () => {
     <div className="container">
       <div className="img-div">
         <div className="welcome-text">
-          <UserGreeting username={username} />
+          <UserGreeting
+            greetingText={
+              username ? `Nice to meet you ${username}!` : "Welcome!"
+            }
+          />
         </div>
         <div className="bottom-text">
           <a href="https://github.com/Paiva2">Check my Github</a>
@@ -85,8 +89,8 @@ const Register = () => {
           </div>
           <div className="footer-text">
             <p>Are u ready to start your journey with us?</p>
-            <IoIosArrowBack onClick={backHome} className="back-icon" />
           </div>
+          <IoIosArrowBack onClick={backHome} className="back-icon" />
         </form>
       </div>
     </div>
