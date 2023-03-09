@@ -1,23 +1,20 @@
-import { React, useState } from "react";
-import App from "../App";
+import { React } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { authorizeUser } from "../store/reducers/userReducer";
 
-const Home = ({ exit }) => {
-  let [logout, setLogout] = useState(exit);
+const Home = () => {
+  const dispatch = useDispatch();
 
-  const exitClick = () => {
-    setLogout(false);
+  const handleExit = () => {
+    dispatch(authorizeUser(false));
   };
 
-  if (logout === false) {
-    return <App />;
-  } else {
-    return (
-      <div className="container">
-        <h1>Bem vindo!</h1>
-        <button onClick={exitClick}>Sair</button>
-      </div>
-    );
-  }
+  return (
+    <div className="container">
+      <h1>Bem vindo!</h1>
+      <button onClick={handleExit}>Sair</button>
+    </div>
+  );
 };
 
 export default Home;
