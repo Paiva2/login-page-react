@@ -32,6 +32,9 @@ function Login() {
   const checkSignIn = (e) => {
     e.preventDefault();
 
+    if (registeredUsers.length === 0)
+      return alert("error", "User's not registered!");
+
     for (let i = 0; i < registeredUsers.length; i++) {
       if (registeredUsers[i].username === username) {
         if (registeredUsers[i].password === password) {
@@ -42,6 +45,8 @@ function Login() {
         } else {
           return alert("error", "Invalid username or password!");
         }
+      } else {
+        return alert("error", "User is not registered!");
       }
     }
   };
@@ -88,8 +93,9 @@ function Login() {
           />
           <input
             ref={passwordInput}
+            className="password-input"
             onChange={(e) => dispatch(passWord(e.target.value.toString()))}
-            type="password"
+            type="text"
             placeholder="Password"
             required
           />

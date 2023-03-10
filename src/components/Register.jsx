@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "../store/reducers/registeredUsersReducer";
 import UserGreeting from "./UserGreeting";
 import { IoIosArrowBack } from "react-icons/io";
@@ -14,6 +14,9 @@ const Register = () => {
   const form = useRef();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const registeredUsers = useSelector(
+    (state) => state.registerDataBase.userData
+  );
 
   const registerNewUser = (e) => {
     e.preventDefault();
@@ -26,11 +29,18 @@ const Register = () => {
       return;
     }
 
+    for (let i = 0; i < registeredUsers.length; i++) {
+      if (registeredUsers[i].username === username)
+        return alertValidation("error", "Username already exists!");
+    }
+
     dispatch(
       registerUser({ username: username, password: password.toString() })
     );
     resetFormData();
   };
+
+  console.log(registeredUsers);
 
   const resetFormData = () => {
     setPassword("");
@@ -81,15 +91,17 @@ const Register = () => {
             />
             <input
               onChange={(e) => setPassword(e.target.value)}
-              type="password"
+              type="text"
               placeholder="Password"
               required
+              className="password-input"
             />
             <input
               onChange={(e) => setconfirmPassword(e.target.value)}
-              type="password"
+              type="text"
               placeholder="Confirm password"
               required
+              className="password-input"
             />
             <button className="submit" type="submit">
               Register

@@ -166,6 +166,10 @@ a:visited {
   height: 50px;
 }
 
+.password-input {
+  -webkit-text-security: disc;
+}
+
 .icon {
   width: 35px;
   padding: 5px;
