@@ -1,10 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  userData: [
-    { username: "paiva", password: 1234 },
-    { username: "joao", password: 1234 },
-  ],
+  userData: [],
 };
 
 export const userDataBase = createSlice({

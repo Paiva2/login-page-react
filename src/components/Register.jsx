@@ -43,8 +43,6 @@ const Register = () => {
     resetFormData();
   };
 
-  console.log(registeredUsers);
-
   const resetFormData = () => {
     setPassword("");
     setUsername("");

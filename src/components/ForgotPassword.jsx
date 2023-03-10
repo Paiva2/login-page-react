@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Helmet from "react-helmet";
 import { IoIosArrowBack } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
@@ -21,17 +21,16 @@ const ForgotPassword = () => {
   const resetPassword = (e) => {
     e.preventDefault();
 
-    registeredUsers.map((user, index) => {
-      if (user.username === username) {
-        dataBaseCopy.splice(index, 1, {
+    for (let i = 0; i < dataBaseCopy.length; i++) {
+      if (dataBaseCopy[i].username === username) {
+        dataBaseCopy.splice(i, 1, {
           username: username,
           password: password,
         });
+        dispatch(registerUser(dataBaseCopy));
       }
-      return user;
-    });
-
-    console.log(dataBaseCopy);
+    }
+    console.log(registeredUsers);
   };
 
   const backHome = () => {

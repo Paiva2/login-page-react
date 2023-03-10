@@ -37,6 +37,7 @@ function Login() {
 
     for (let i = 0; i < registeredUsers.length; i++) {
       if (registeredUsers[i].username === username) {
+        console.log(registeredUsers[i]);
         if (registeredUsers[i].password === password) {
           dispatch(authorizeUser(true));
           navigate("/home");
@@ -45,11 +46,11 @@ function Login() {
         } else {
           return alert("error", "Invalid username or password!");
         }
-      } else {
-        return alert("error", "User is not registered!");
       }
     }
   };
+
+  console.log(registeredUsers);
 
   const clearUserInfo = () => {
     dispatch(userName(""));
