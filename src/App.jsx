@@ -4,6 +4,7 @@ import { Route, Routes, BrowserRouter, Navigate } from "react-router-dom";
 import Home from "./components/Home";
 import { useSelector } from "react-redux";
 import NotFound from "./components/NotFound";
+import ForgotPassword from "./components/ForgotPassword";
 
 function App() {
   const authorized = useSelector((state) => state.userData.authorized);
@@ -18,6 +19,7 @@ function App() {
           path="/home"
           element={authorized ? <Home /> : <Navigate to="/login" />}
         />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

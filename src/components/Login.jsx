@@ -104,9 +104,16 @@ function Login() {
           </button>
 
           <p>
-            Not a member?
+            Not a member?&nbsp;
             <NavLink onClick={clearUserInfo} to="/register">
               <span className="undertextsign">SignUp</span>
+            </NavLink>
+          </p>
+
+          <p>
+            Forgot your&nbsp;
+            <NavLink onClick={clearUserInfo} to="/forgot-password">
+              <span className="undertextsign">Password?</span>
             </NavLink>
           </p>
 
