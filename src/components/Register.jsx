@@ -34,9 +34,12 @@ const Register = () => {
         return alertValidation("error", "Username already exists!");
     }
 
-    dispatch(
-      registerUser({ username: username, password: password.toString() })
-    );
+    const registeredUsersCopy = [
+      ...registeredUsers,
+      { username: username, password: password.toString() },
+    ];
+
+    dispatch(registerUser(registeredUsersCopy));
     resetFormData();
   };
 

@@ -4,6 +4,7 @@ import { IoIosArrowBack } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import UserGreeting from "./UserGreeting";
+import { registerUser } from "../store/reducers/registeredUsersReducer";
 
 const ForgotPassword = () => {
   const [username, setUsername] = useState();
@@ -15,14 +16,22 @@ const ForgotPassword = () => {
     (state) => state.registerDataBase.userData
   );
   const dispatch = useDispatch();
+  const dataBaseCopy = [...registeredUsers];
+
   const resetPassword = (e) => {
     e.preventDefault();
 
-    for (let i = 0; i < registeredUsers.length; i++) {
-      if (registeredUsers[i] === username) {
-        console.log(registeredUsers[i]);
+    registeredUsers.map((user, index) => {
+      if (user.username === username) {
+        dataBaseCopy.splice(index, 1, {
+          username: username,
+          password: password,
+        });
       }
-    }
+      return user;
+    });
+
+    console.log(dataBaseCopy);
   };
 
   const backHome = () => {
@@ -75,7 +84,7 @@ const ForgotPassword = () => {
               //   required
             />
             <input
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value.toString())}
               type="text"
               placeholder="New Password"
               //   required
