@@ -81,7 +81,7 @@ const Register = () => {
               <span className="undertext-effect-register">ister</span>
             </h1>
           </div>
-          <div>
+          <div className="register-inputs">
             <input
               onChange={(e) => setUsername(e.target.value)}
               type="text"

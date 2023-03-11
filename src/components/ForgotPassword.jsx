@@ -86,7 +86,7 @@ const ForgotPassword = () => {
               <span className="reset-pass-undertext-effect">Password</span>
             </h1>
           </div>
-          <div>
+          <div className="forgot-pass-inputs">
             <input
               onChange={(e) => setUsername(e.target.value)}
               type="text"

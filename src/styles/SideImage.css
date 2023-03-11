@@ -30,3 +30,21 @@
 .bottom-text a:visited {
   color: white;
 }
+
+@media (max-width: 600px) {
+  .img-div {
+    width: 100%;
+  }
+
+  .welcome-text {
+    font-size: 20px;
+    height: 55px;
+    width: 310px;
+    overflow: auto;
+    word-break: normal;
+  }
+
+  .bottom-text {
+    font-size: 13px;
+  }
+}
