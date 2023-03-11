@@ -1,0 +1,32 @@
+.img-div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  background-image: url("../components/img/background.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  height: 100%;
+  width: 750px;
+  color: white;
+  overflow: hidden;
+}
+
+.welcome-text {
+  font-size: 25px;
+  margin: 10px;
+  user-select: none;
+  font-weight: bold;
+  width: 350px;
+  word-break: break-all;
+}
+
+.bottom-text {
+  margin: 10px;
+  letter-spacing: +1px;
+}
+
+.bottom-text a:visited {
+  color: white;
+}

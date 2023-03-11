@@ -2,7 +2,7 @@ import { React, useEffect, useRef } from "react";
 import { useNavigate, NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Helmet } from "react-helmet";
-import "../App.css";
+import "../styles/Login.css";
 import alertValidation, { confirmAlert } from "./alertValidation";
 import {
   authorizeUser,

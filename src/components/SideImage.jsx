@@ -1,5 +1,6 @@
 import React from "react";
 import UserGreeting from "./UserGreeting";
+import "../styles/SideImage.css";
 
 const SideImage = ({ text }) => {
   return (
