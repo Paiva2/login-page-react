@@ -1,7 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const localStorageUsers =
+  localStorage.getItem("user") === null
+    ? []
+    : JSON.parse(localStorage.getItem("user"));
+
+const registeredUsers = localStorageUsers;
+
 const initialState = {
-  userData: [],
+  userData: registeredUsers,
 };
 
 export const userDataBase = createSlice({

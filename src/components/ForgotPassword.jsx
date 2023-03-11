@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import Helmet from "react-helmet";
 import { IoIosArrowBack } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
@@ -18,15 +18,6 @@ const ForgotPassword = () => {
   );
   const dispatch = useDispatch();
   const dataBaseCopy = [...registeredUsers];
-
-  useEffect(() => {
-    const savedUsers = localStorage.getItem("user");
-    if (localStorage.getItem("user") === null) {
-      dispatch(registerUser([]));
-    } else {
-      dispatch(registerUser(JSON.parse(savedUsers)));
-    }
-  }, []);
 
   const resetPassword = (e) => {
     e.preventDefault();

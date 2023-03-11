@@ -1,4 +1,4 @@
-import { React, useEffect, useRef } from "react";
+import { React, useRef } from "react";
 import { useNavigate, NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Helmet } from "react-helmet";
@@ -29,15 +29,6 @@ function Login() {
   );
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const savedUsers = localStorage.getItem("user");
-    if (localStorage.getItem("user") === null) {
-      dispatch(registerUser([]));
-    } else {
-      dispatch(registerUser(JSON.parse(savedUsers)));
-    }
-  }, []);
 
   const checkSignIn = (e) => {
     e.preventDefault();
