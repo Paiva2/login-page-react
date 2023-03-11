@@ -1,10 +1,10 @@
-import { React, useRef } from "react";
+import { React, useEffect, useRef } from "react";
 import { useNavigate, NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Helmet } from "react-helmet";
 import "../App.css";
 import UserGreeting from "./UserGreeting";
-import alert from "./alertValidation";
+import alertValidation from "./alertValidation";
 import {
   authorizeUser,
   userName,
@@ -17,6 +17,7 @@ import {
   faTwitter,
   faGoogle,
 } from "@fortawesome/free-brands-svg-icons";
+import { registerUser } from "../store/reducers/registeredUsersReducer";
 
 function Login() {
   const userInput = useRef(null);
@@ -29,25 +30,34 @@ function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const savedUsers = localStorage.getItem("user");
+    if (localStorage.getItem("user") === null) {
+      dispatch(registerUser([]));
+    } else {
+      dispatch(registerUser(JSON.parse(savedUsers)));
+    }
+  }, []);
+
   const checkSignIn = (e) => {
     e.preventDefault();
 
     if (registeredUsers.length === 0)
-      return alert("error", "User's not registered!");
+      return alertValidation("error", "User's not registered!");
 
     for (let i = 0; i < registeredUsers.length; i++) {
       if (registeredUsers[i].username === username) {
-        console.log(registeredUsers[i]);
         if (registeredUsers[i].password === password) {
           dispatch(authorizeUser(true));
           navigate("/home");
           clearUserInfo();
           return;
         } else {
-          return alert("error", "Invalid username or password!");
+          return alertValidation("error", "Invalid username or password!");
         }
       }
     }
+    return alertValidation("error", "Invalid username or password!");
   };
 
   const clearUserInfo = () => {

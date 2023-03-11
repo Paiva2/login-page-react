@@ -1,6 +1,6 @@
 import Swal from "sweetalert2";
 
-const alert = (icon, msg) => {
+const alertValidation = (icon, msg) => {
   Swal.fire({
     position: "center",
     icon: icon,
@@ -10,4 +10,4 @@ const alert = (icon, msg) => {
   });
 };
 
-export default alert;
+export default alertValidation;

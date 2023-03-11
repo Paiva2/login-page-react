@@ -5,12 +5,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import UserGreeting from "./UserGreeting";
 import { registerUser } from "../store/reducers/registeredUsersReducer";
+import alertValidation from "./alertValidation";
 
 const ForgotPassword = () => {
+  const navigate = useNavigate();
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
-  const navigate = useNavigate();
-  const form = useRef();
+  const formRef = useRef();
   const [confirmPassword, setconfirmPassword] = useState();
   const registeredUsers = useSelector(
     (state) => state.registerDataBase.userData
@@ -18,8 +19,26 @@ const ForgotPassword = () => {
   const dispatch = useDispatch();
   const dataBaseCopy = [...registeredUsers];
 
+  useEffect(() => {
+    const savedUsers = localStorage.getItem("user");
+    if (localStorage.getItem("user") === null) {
+      dispatch(registerUser([]));
+    } else {
+      dispatch(registerUser(JSON.parse(savedUsers)));
+    }
+  }, []);
+
   const resetPassword = (e) => {
     e.preventDefault();
+
+    if (password !== confirmPassword)
+      return alertValidation("warning", "Passwords do not match!");
+
+    if (password.length < 6)
+      return alertValidation(
+        "warning",
+        "Use a password with at least 6 numbers!"
+      );
 
     for (let i = 0; i < dataBaseCopy.length; i++) {
       if (dataBaseCopy[i].username === username) {
@@ -28,9 +47,16 @@ const ForgotPassword = () => {
           password: password,
         });
         dispatch(registerUser(dataBaseCopy));
+        setLocalStorage(dataBaseCopy);
+        resetFormData();
+        return;
       }
     }
-    console.log(registeredUsers);
+    return alertValidation("warning", "Username does not exists!");
+  };
+
+  const setLocalStorage = (usersData) => {
+    localStorage.setItem("user", JSON.stringify(usersData));
   };
 
   const backHome = () => {
@@ -42,7 +68,7 @@ const ForgotPassword = () => {
     setPassword("");
     setUsername("");
     setconfirmPassword("");
-    form.current.reset();
+    formRef.current.reset();
   };
 
   return (
@@ -67,7 +93,7 @@ const ForgotPassword = () => {
         </div>
       </div>
       <div className="form-div">
-        <form ref={form} onSubmit={resetPassword} className="form">
+        <form ref={formRef} onSubmit={resetPassword} className="form">
           <div className="page-title">
             <h1>Reset your</h1>
             <h1>

@@ -11,7 +11,7 @@ const Register = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setconfirmPassword] = useState("");
-  const form = useRef();
+  const formRef = useRef();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const registeredUsers = useSelector(
@@ -61,7 +61,7 @@ const Register = () => {
     setPassword("");
     setUsername("");
     setconfirmPassword("");
-    form.current.reset();
+    formRef.current.reset();
   };
 
   const backHome = () => {
@@ -89,7 +89,11 @@ const Register = () => {
         </div>
       </div>
       <div className="form-div">
-        <form ref={form} onSubmit={(e) => registerNewUser(e)} className="form">
+        <form
+          ref={formRef}
+          onSubmit={(e) => registerNewUser(e)}
+          className="form"
+        >
           <div>
             <h1>
               Reg
