@@ -50,8 +50,6 @@ function Login() {
     }
   };
 
-  console.log(registeredUsers);
-
   const clearUserInfo = () => {
     dispatch(userName(""));
     dispatch(passWord(""));

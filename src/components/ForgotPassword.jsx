@@ -80,20 +80,20 @@ const ForgotPassword = () => {
               type="text"
               placeholder="Username"
               maxLength={30}
-              //   required
+              required
             />
             <input
               onChange={(e) => setPassword(e.target.value.toString())}
               type="text"
               placeholder="New Password"
-              //   required
+              required
               className="password-input"
             />
             <input
               onChange={(e) => setconfirmPassword(e.target.value)}
               type="text"
               placeholder="Confirm Password"
-              //   required
+              required
               className="password-input"
             />
             <button className="submit" type="submit">

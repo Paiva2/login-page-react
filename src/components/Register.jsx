@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "../store/reducers/registeredUsersReducer";
 import UserGreeting from "./UserGreeting";
@@ -17,6 +17,19 @@ const Register = () => {
   const registeredUsers = useSelector(
     (state) => state.registerDataBase.userData
   );
+
+  useEffect(() => {
+    const savedUsers = localStorage.getItem("user");
+    if (localStorage.getItem("user") === null) {
+      dispatch(registerUser([]));
+    } else {
+      dispatch(registerUser(JSON.parse(savedUsers)));
+    }
+  }, []);
+
+  const setLocalStorage = (usersData) => {
+    localStorage.setItem("user", JSON.stringify(usersData));
+  };
 
   const registerNewUser = (e) => {
     e.preventDefault();
@@ -41,6 +54,7 @@ const Register = () => {
 
     dispatch(registerUser(registeredUsersCopy));
     resetFormData();
+    setLocalStorage(registeredUsersCopy);
   };
 
   const resetFormData = () => {
