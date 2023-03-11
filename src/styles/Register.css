@@ -1,0 +1,124 @@
+.register-container {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  height: 600px;
+  width: 760px;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 5%;
+  box-shadow: 9px 9px 13px -8px rgba(38, 38, 38, 0.67);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.register-form-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 700px;
+}
+
+.register-form-div form {
+  height: 480px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.register-form p {
+  font-size: 16px;
+}
+
+.register-form input {
+  height: 30px;
+  width: 200px;
+  padding-left: 5px;
+  margin: 10px;
+  font-size: 16px;
+  border: none;
+  border-bottom: 2px solid #db747d;
+  font-family: sans-serif;
+}
+
+.register-form h1 {
+  color: rgb(83, 82, 82);
+  font-size: 35px;
+  user-select: none;
+}
+
+.undertext-effect-register {
+  text-decoration: underline;
+  text-decoration-color: #d8515d;
+}
+
+.register-password-input {
+  -webkit-text-security: disc;
+}
+
+.submit-register {
+  width: 180px;
+  height: 40px;
+  cursor: pointer;
+  border: none;
+  font-size: 18px;
+  background-image: radial-gradient(
+    circle,
+    #ff7276,
+    #e76380,
+    #ca5986,
+    #aa5287,
+    #894c83
+  );
+  border-radius: 5px;
+  margin: 8px;
+  color: #fff;
+  font-weight: bold;
+  -moz-transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.submit-register:hover {
+  color: rgb(39, 39, 39);
+  -moz-transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+.register-footer-text {
+  border-bottom: 3px solid #d84a56;
+  margin: 8px;
+}
+.register-footer-text p {
+  user-select: none;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.register-back-icon {
+  background-image: radial-gradient(
+    circle,
+    #ff7276,
+    #e76380,
+    #ca5986,
+    #aa5287,
+    #894c83
+  );
+  font-size: 25px;
+  padding: 5px;
+  cursor: pointer;
+  color: white;
+  border-radius: 50px;
+  -moz-transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.register-back-icon:hover {
+  color: rgb(39, 39, 39);
+  -moz-transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  transform: scale(1.2);
+}

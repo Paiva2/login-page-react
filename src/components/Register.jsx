@@ -1,12 +1,12 @@
 import React, { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { registerUser } from "../store/reducers/registeredUsersReducer";
-import UserGreeting from "./UserGreeting";
-import { IoIosArrowBack } from "react-icons/io";
-import alertValidation, { confirmAlert } from "./alertValidation";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import { IoIosArrowBack } from "react-icons/io";
+import { registerUser } from "../store/reducers/registeredUsersReducer";
+import alertValidation, { confirmAlert } from "./alertValidation";
 import SideImage from "./SideImage";
+import "../styles/Register.css";
 
 const Register = () => {
   const [username, setUsername] = useState("");
@@ -62,23 +62,23 @@ const Register = () => {
   };
 
   return (
-    <div className="container">
+    <div className="register-container">
       <Helmet>
         <meta charSet="utf-8" />
         <html lang="en-US" />
         <title>Wish List</title>
       </Helmet>
       <SideImage text={username ? `Welcome ${username}!` : "Welcome!"} />
-      <div className="form-div">
+      <div className="register-form-div">
         <form
           ref={formRef}
           onSubmit={(e) => registerNewUser(e)}
-          className="form"
+          className="register-form"
         >
           <div>
             <h1>
               Reg
-              <span className="undertext-effect">ister</span>
+              <span className="undertext-effect-register">ister</span>
             </h1>
           </div>
           <div>
@@ -94,23 +94,23 @@ const Register = () => {
               type="text"
               placeholder="Password"
               required
-              className="password-input"
+              className="register-password-input"
             />
             <input
               onChange={(e) => setconfirmPassword(e.target.value)}
               type="text"
               placeholder="Confirm password"
               required
-              className="password-input"
+              className="register-password-input"
             />
-            <button className="submit" type="submit">
+            <button className="submit-register" type="submit">
               Register
             </button>
           </div>
-          <div className="footer-text">
+          <div className="register-footer-text">
             <p>Are u ready to start your journey with us?</p>
           </div>
-          <IoIosArrowBack onClick={backHome} className="back-icon" />
+          <IoIosArrowBack onClick={backHome} className="register-back-icon" />
         </form>
       </div>
     </div>

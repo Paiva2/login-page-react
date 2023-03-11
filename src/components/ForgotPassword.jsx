@@ -3,10 +3,10 @@ import Helmet from "react-helmet";
 import { IoIosArrowBack } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import UserGreeting from "./UserGreeting";
 import { registerUser } from "../store/reducers/registeredUsersReducer";
 import alertValidation, { confirmAlert } from "./alertValidation";
 import SideImage from "./SideImage";
+import "../styles/ForgotPassword.css";
 
 const ForgotPassword = () => {
   const navigate = useNavigate();
@@ -65,7 +65,7 @@ const ForgotPassword = () => {
   };
 
   return (
-    <div className="container">
+    <div className="reset-pass-container">
       <Helmet>
         <meta charSet="utf-8" />
         <html lang="en-US" />
@@ -78,12 +78,12 @@ const ForgotPassword = () => {
             : "We'll never forget you!"
         }
       />
-      <div className="form-div">
+      <div className="form-div-reset-pass">
         <form ref={formRef} onSubmit={resetPassword} className="form">
           <div className="page-title">
             <h1>Reset your</h1>
             <h1>
-              <span className="undertext-effect">Password</span>
+              <span className="reset-pass-undertext-effect">Password</span>
             </h1>
           </div>
           <div>
@@ -99,23 +99,23 @@ const ForgotPassword = () => {
               type="text"
               placeholder="New Password"
               required
-              className="password-input"
+              className="reset-password-input"
             />
             <input
               onChange={(e) => setconfirmPassword(e.target.value)}
               type="text"
               placeholder="Confirm Password"
               required
-              className="password-input"
+              className="reset-password-input"
             />
-            <button className="submit" type="submit">
+            <button className="submit-reset" type="submit">
               Reset
             </button>
           </div>
-          <div className="footer-text">
+          <div className="reset-pass-footer-text">
             <p>Don't forgot our jorney!</p>
           </div>
-          <IoIosArrowBack onClick={backHome} className="back-icon" />
+          <IoIosArrowBack onClick={backHome} className="reset-pass-back-icon" />
         </form>
       </div>
     </div>
