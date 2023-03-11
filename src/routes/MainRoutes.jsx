@@ -12,10 +12,7 @@ function MainRoutes() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route
-          path="https://login-page112.netlify.app/"
-          element={<Navigate to="/login" />}
-        />
+        <Route path="" element={<Navigate to="/login" />} />
         <Route path="/login" element={!authorized ? <Login /> : <Home />} />
         <Route path="/register" element={<Register />} />
         <Route
