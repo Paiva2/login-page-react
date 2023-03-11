@@ -5,7 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import UserGreeting from "./UserGreeting";
 import { registerUser } from "../store/reducers/registeredUsersReducer";
-import alertValidation from "./alertValidation";
+import alertValidation, { confirmAlert } from "./alertValidation";
+import SideImage from "./SideImage";
 
 const ForgotPassword = () => {
   const navigate = useNavigate();
@@ -40,6 +41,7 @@ const ForgotPassword = () => {
         dispatch(registerUser(dataBaseCopy));
         setLocalStorage(dataBaseCopy);
         resetFormData();
+        confirmAlert("Password changed!");
         return;
       }
     }
@@ -69,20 +71,13 @@ const ForgotPassword = () => {
         <html lang="en-US" />
         <title>Forgot Password</title>
       </Helmet>
-      <div className="img-div">
-        <div className="welcome-text">
-          <UserGreeting
-            greetingText={
-              username
-                ? `We'll never forget you ${username}!`
-                : "We'll never forget you!"
-            }
-          />
-        </div>
-        <div className="bottom-text">
-          <a href="https://github.com/Paiva2">Check my Github</a>
-        </div>
-      </div>
+      <SideImage
+        text={
+          username
+            ? `We'll never forget you ${username}!`
+            : "We'll never forget you!"
+        }
+      />
       <div className="form-div">
         <form ref={formRef} onSubmit={resetPassword} className="form">
           <div className="page-title">

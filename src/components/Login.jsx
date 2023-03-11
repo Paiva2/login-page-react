@@ -1,10 +1,9 @@
-import { React, useRef } from "react";
+import { React, useEffect, useRef } from "react";
 import { useNavigate, NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Helmet } from "react-helmet";
 import "../App.css";
-import UserGreeting from "./UserGreeting";
-import alertValidation from "./alertValidation";
+import alertValidation, { confirmAlert } from "./alertValidation";
 import {
   authorizeUser,
   userName,
@@ -17,7 +16,7 @@ import {
   faTwitter,
   faGoogle,
 } from "@fortawesome/free-brands-svg-icons";
-import { registerUser } from "../store/reducers/registeredUsersReducer";
+import SideImage from "./SideImage";
 
 function Login() {
   const userInput = useRef(null);
@@ -42,6 +41,7 @@ function Login() {
           dispatch(authorizeUser(true));
           navigate("/home");
           clearUserInfo();
+          confirmAlert("Login successful!");
           return;
         } else {
           return alertValidation("error", "Invalid username or password!");
@@ -65,18 +65,9 @@ function Login() {
         <html lang="en-US" />
         <title>Login</title>
       </Helmet>
-      <div className="img-div">
-        <div className="welcome-text">
-          <UserGreeting
-            greetingText={
-              username ? `Welcome back ${username}!` : "Welcome back!"
-            }
-          />
-        </div>
-        <div className="bottom-text">
-          <a href="https://github.com/Paiva2">Check my Github</a>
-        </div>
-      </div>
+      <SideImage
+        text={username ? `Welcome back ${username}!` : "Welcome back!"}
+      />
       <div className="form-div">
         <form onSubmit={checkSignIn} className="form">
           <h1>

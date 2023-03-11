@@ -5,6 +5,7 @@ import Home from "./components/Home";
 import { useSelector } from "react-redux";
 import NotFound from "./components/NotFound";
 import ForgotPassword from "./components/ForgotPassword";
+import Modal from "react-modal/lib/components/Modal";
 
 function App() {
   const authorized = useSelector((state) => state.userData.authorized);
@@ -27,3 +28,4 @@ function App() {
 }
 
 export default App;
+Modal.setAppElement("#root");

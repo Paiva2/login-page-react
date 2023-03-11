@@ -3,9 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "../store/reducers/registeredUsersReducer";
 import UserGreeting from "./UserGreeting";
 import { IoIosArrowBack } from "react-icons/io";
-import alertValidation from "./alertValidation";
+import alertValidation, { confirmAlert } from "./alertValidation";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import SideImage from "./SideImage";
 
 const Register = () => {
   const [username, setUsername] = useState("");
@@ -42,7 +43,7 @@ const Register = () => {
       ...registeredUsers,
       { username: username, password: password.toString() },
     ];
-
+    confirmAlert("Register succesful!");
     dispatch(registerUser(registeredUsersCopy));
     resetFormData();
     setLocalStorage(registeredUsersCopy);
@@ -67,18 +68,7 @@ const Register = () => {
         <html lang="en-US" />
         <title>Wish List</title>
       </Helmet>
-      <div className="img-div">
-        <div className="welcome-text">
-          <UserGreeting
-            greetingText={
-              username ? `Nice to meet you ${username}!` : "Welcome!"
-            }
-          />
-        </div>
-        <div className="bottom-text">
-          <a href="https://github.com/Paiva2">Check my Github</a>
-        </div>
-      </div>
+      <SideImage text={username ? `Welcome ${username}!` : "Welcome!"} />
       <div className="form-div">
         <form
           ref={formRef}
