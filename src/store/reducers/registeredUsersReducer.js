@@ -2,7 +2,11 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const localStorageUsers =
   localStorage.getItem("user") === null
-    ? []
+    ? [{
+      username: 'paiva',
+      password: '123',
+      posts: ["aaaa", "bbbbbbb", "cccccc", "dddddd"],
+    }]
     : JSON.parse(localStorage.getItem("user"));
 
 const registeredUsers = localStorageUsers;

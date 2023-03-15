@@ -41,7 +41,11 @@ const Register = () => {
 
     const registeredUsersCopy = [
       ...registeredUsers,
-      { username: username, password: password.toString() },
+      {
+        username: username,
+        password: password.toString(),
+        posts: [],
+      },
     ];
     confirmAlert("Register succesful!");
     dispatch(registerUser(registeredUsersCopy));

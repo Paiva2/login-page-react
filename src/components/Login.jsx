@@ -52,7 +52,6 @@ function Login() {
   };
 
   const clearUserInfo = () => {
-    dispatch(userName(""));
     dispatch(passWord(""));
     userInput.current.value = "";
     passwordInput.current.value = "";
