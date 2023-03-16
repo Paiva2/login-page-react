@@ -4,6 +4,7 @@ import { authorizeUser, userName } from "../store/reducers/userReducer";
 import {
   registerUser,
   addNewPost,
+  deletePost,
 } from "../store/reducers/registeredUsersReducer";
 import { Helmet } from "react-helmet";
 import "../styles/Home.css";
@@ -31,31 +32,15 @@ const Home = () => {
     dispatch(userName(""));
   };
 
-  const setLocalStorage = (usersData) => {
-    localStorage.setItem("user", JSON.stringify(usersData));
-  };
-
   const newPost = () => {
     dispatch(addNewPost([postText, username]));
   };
 
   const delPost = ({ target }) => {
-    const registeredUsersCopy = [...registeredUsers];
     const postToDelete = target.closest(".post");
     const postToDeleteID = postToDelete.getAttribute("data-id");
 
-    const newUserData = registeredUsers.map((user) => {
-      let userposts;
-      user.posts.map((post, index) => {
-        if (post.id === postToDeleteID) {
-          const postsCopy = [...user.posts];
-          postsCopy.splice(index, 1);
-          return (userposts = { ...user, posts: postsCopy });
-        }
-      });
-    });
-    //dispatch(registerUser(newUserData));
-    //setLocalStorage(newUserData);
+    dispatch(deletePost([postToDeleteID, username]));
   };
 
   return (
@@ -83,7 +68,7 @@ const Home = () => {
             {postData &&
               postData.map((post) => {
                 return (
-                  <div style={{ display: "flex" }}>
+                  <div key={post.id} style={{ display: "flex" }}>
                     <li className="post" data-id={post.id}>
                       {post.text}
                       <button onClick={delPost} style={{ margin: "2px" }}>

@@ -1,26 +1,12 @@
 import { createSlice, nanoid } from "@reduxjs/toolkit";
-import { useSelector } from "react-redux";
 
 const localStorageUsers =
   localStorage.getItem("user") === null
     ? [
         {
-          username: "paiva",
-          password: "123",
-          posts: [
-            {
-              id: "QYS4",
-              text: "Text 1",
-            },
-            {
-              id: "QY4242",
-              text: "Text 2",
-            },
-            {
-              id: "ZYW4",
-              text: "Text 3",
-            },
-          ],
+          username: "",
+          password: "",
+          posts: [],
         },
       ]
     : JSON.parse(localStorage.getItem("user"));
@@ -39,10 +25,26 @@ export const userDataBase = createSlice({
       state.userData = action.payload;
     },
     addNewPost: (state, action) => {
+      const [text, username] = action.payload;
+
       const newUserData = state.userData.map((user) => {
-        const [text, username] = action.payload;
         if (user.username === username) {
-          user.posts.push({ id: nanoid(4), text: text });
+          user.posts.push({ id: nanoid(4), text });
+        }
+        return user;
+      });
+      localStorage.setItem("user", JSON.stringify(newUserData));
+    },
+    deletePost: (state, action) => {
+      const [postToDeleteID, username] = action.payload;
+
+      const newUserData = state.userData.map((user) => {
+        if (user.username === username) {
+          user.posts.map((post, index) => {
+            if (post.id === postToDeleteID) {
+              user.posts.splice(index, 1);
+            }
+          });
         }
         return user;
       });
@@ -51,6 +53,6 @@ export const userDataBase = createSlice({
   },
 });
 
-export const { registerUser, addNewPost } = userDataBase.actions;
+export const { registerUser, addNewPost, deletePost } = userDataBase.actions;
 export default userDataBase.reducer;
 9;
