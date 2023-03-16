@@ -26,6 +26,7 @@ export const userDataBase = createSlice({
     },
     addNewPost: (state, action) => {
       const [text, username] = action.payload;
+      if (text === "") return;
 
       const newUserData = state.userData.map((user) => {
         if (user.username === username) {
@@ -55,4 +56,3 @@ export const userDataBase = createSlice({
 
 export const { registerUser, addNewPost, deletePost } = userDataBase.actions;
 export default userDataBase.reducer;
-9;

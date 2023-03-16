@@ -2,21 +2,22 @@ import { React, useLayoutEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { authorizeUser, userName } from "../store/reducers/userReducer";
 import {
-  registerUser,
   addNewPost,
   deletePost,
 } from "../store/reducers/registeredUsersReducer";
 import { Helmet } from "react-helmet";
 import "../styles/Home.css";
+import UserGreeting from "./UserGreeting";
+import { RiDeleteBinLine } from "react-icons/ri";
 
 const Home = () => {
   const username = useSelector((state) => state.userData.username);
   const registeredUsers = useSelector(
     (state) => state.registerDataBase.userData
   );
+  const textAreaRef = useRef();
   const [postText, setPostText] = useState("");
   const [postData, setPostData] = useState("");
-  const postRef = useRef();
   const dispatch = useDispatch();
 
   useLayoutEffect(() => {
@@ -34,6 +35,8 @@ const Home = () => {
 
   const newPost = () => {
     dispatch(addNewPost([postText, username]));
+    textAreaRef.current.value = "";
+    setPostText("");
   };
 
   const delPost = ({ target }) => {
@@ -50,8 +53,10 @@ const Home = () => {
         <html lang="en-US" />
         <title>Home</title>
       </Helmet>
-      <div>
-        <h1>Welcome! Username</h1>
+      <div className="home-wrapper">
+        <div className="greeting-text">
+          <UserGreeting greetingText={`There's your posts ${username}!`} />
+        </div>
         <div className="text-area-container">
           <textarea
             onChange={(e) => setPostText(e.target.value)}
@@ -60,20 +65,24 @@ const Home = () => {
             rows="7"
             cols="50"
             placeholder="Post something here!"
+            ref={textAreaRef}
+            className="text-area"
           ></textarea>
-          <button onClick={newPost}>Post</button>
+          <button className="new-post-btn" onClick={newPost}>
+            Post
+          </button>
         </div>
         <div className="posts-container">
           <ul>
             {postData &&
               postData.map((post) => {
                 return (
-                  <div key={post.id} style={{ display: "flex" }}>
+                  <div className="posts-wrapper" key={post.id}>
                     <li className="post" data-id={post.id}>
-                      {post.text}
-                      <button onClick={delPost} style={{ margin: "2px" }}>
-                        Del
-                      </button>
+                      <div className="post-text">{post.text}</div>
+                      <div className="post-del-btn">
+                        <RiDeleteBinLine onClick={delPost} />
+                      </div>
                     </li>
                   </div>
                 );
