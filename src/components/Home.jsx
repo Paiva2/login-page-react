@@ -1,7 +1,10 @@
-import { React, useLayoutEffect, useState } from "react";
+import { React, useLayoutEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { authorizeUser, userName } from "../store/reducers/userReducer";
-import { registerUser } from "../store/reducers/registeredUsersReducer";
+import {
+  registerUser,
+  addNewPost,
+} from "../store/reducers/registeredUsersReducer";
 import { Helmet } from "react-helmet";
 import "../styles/Home.css";
 
@@ -12,6 +15,7 @@ const Home = () => {
   );
   const [postText, setPostText] = useState("");
   const [postData, setPostData] = useState("");
+  const postRef = useRef();
   const dispatch = useDispatch();
 
   useLayoutEffect(() => {
@@ -32,18 +36,26 @@ const Home = () => {
   };
 
   const newPost = () => {
-    if (postText === "") return;
-    const registeredUsersCopy = [...registeredUsers];
+    dispatch(addNewPost([postText, username]));
+  };
 
-    const newUser = registeredUsersCopy.map((user) => {
-      if (user.username === username) {
-        const newPosts = [...user.posts, postText];
-        return { ...user, posts: newPosts };
-      }
-      return user;
+  const delPost = ({ target }) => {
+    const registeredUsersCopy = [...registeredUsers];
+    const postToDelete = target.closest(".post");
+    const postToDeleteID = postToDelete.getAttribute("data-id");
+
+    const newUserData = registeredUsers.map((user) => {
+      let userposts;
+      user.posts.map((post, index) => {
+        if (post.id === postToDeleteID) {
+          const postsCopy = [...user.posts];
+          postsCopy.splice(index, 1);
+          return (userposts = { ...user, posts: postsCopy });
+        }
+      });
     });
-    dispatch(registerUser(newUser));
-    setLocalStorage(newUser);
+    //dispatch(registerUser(newUserData));
+    //setLocalStorage(newUserData);
   };
 
   return (
@@ -72,8 +84,12 @@ const Home = () => {
               postData.map((post) => {
                 return (
                   <div style={{ display: "flex" }}>
-                    <li>{post}</li>
-                    <button style={{ margin: "2px" }}>Del</button>
+                    <li className="post" data-id={post.id}>
+                      {post.text}
+                      <button onClick={delPost} style={{ margin: "2px" }}>
+                        Del
+                      </button>
+                    </li>
                   </div>
                 );
               })}
