@@ -9,6 +9,7 @@ import { Helmet } from "react-helmet";
 import "../styles/Home.css";
 import UserGreeting from "./UserGreeting";
 import { RiDeleteBinLine } from "react-icons/ri";
+import PlaceHolder from "./PlaceHolder";
 
 const Home = () => {
   const username = useSelector((state) => state.userData.username);
@@ -74,7 +75,10 @@ const Home = () => {
         </div>
         <div className="posts-container">
           <ul>
-            {postData &&
+            {postData.length === 0 ? (
+              <PlaceHolder />
+            ) : (
+              postData &&
               postData.map((post) => {
                 return (
                   <div className="posts-wrapper" key={post.id}>
@@ -86,7 +90,8 @@ const Home = () => {
                     </li>
                   </div>
                 );
-              })}
+              })
+            )}
           </ul>
         </div>
       </div>
