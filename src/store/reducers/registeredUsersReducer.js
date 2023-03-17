@@ -5,13 +5,7 @@ import alertValidation, {
 
 const localStorageUsers =
   localStorage.getItem("user") === null
-    ? [
-        {
-          username: "",
-          password: "",
-          posts: [],
-        },
-      ]
+    ? []
     : JSON.parse(localStorage.getItem("user"));
 
 const registeredUsers = localStorageUsers;
@@ -25,20 +19,15 @@ export const userDataBase = createSlice({
   initialState,
   reducers: {
     registerUser: (state, action) => {
-      state.userData = action.payload;
+      const { resetFormData, newUser } = action.payload;
+
+      state.userData.push(newUser);
+      confirmAlert("Register succesful!");
+      localStorage.setItem("user", JSON.stringify(state.userData));
+      resetFormData(true);
     },
     changePassWord: (state, action) => {
-      const { username, password, confirmPassword, resetFormData } =
-        action.payload;
-
-      if (password !== confirmPassword)
-        return alertValidation("warning", "Passwords do not match!");
-
-      if (password.length < 6)
-        return alertValidation(
-          "warning",
-          "Use a password with at least 6 numbers!"
-        );
+      const { username, password, resetFormData } = action.payload;
 
       for (let i = 0; i < state.userData.length; i++) {
         if (state.userData[i].username === username) {
@@ -58,6 +47,7 @@ export const userDataBase = createSlice({
     },
     addNewPost: (state, action) => {
       const [text, username] = action.payload;
+
       if (text === "") return;
 
       const newUserData = state.userData.map((user) => {

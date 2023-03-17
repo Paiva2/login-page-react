@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { IoIosArrowBack } from "react-icons/io";
 import { registerUser } from "../store/reducers/registeredUsersReducer";
-import alertValidation, { confirmAlert } from "./alertValidation";
+import alertValidation from "./alertValidation";
 import SideImage from "./SideImage";
 import "../styles/Register.css";
 
@@ -18,10 +18,6 @@ const Register = () => {
   const registeredUsers = useSelector(
     (state) => state.registerDataBase.userData
   );
-
-  const setLocalStorage = (usersData) => {
-    localStorage.setItem("user", JSON.stringify(usersData));
-  };
 
   const registerNewUser = (e) => {
     e.preventDefault();
@@ -39,25 +35,21 @@ const Register = () => {
         return alertValidation("error", "Username already exists!");
     }
 
-    const registeredUsersCopy = [
-      ...registeredUsers,
-      {
-        username: username,
-        password: password.toString(),
-        posts: [],
-      },
-    ];
-    confirmAlert("Register succesful!");
-    dispatch(registerUser(registeredUsersCopy));
-    resetFormData();
-    setLocalStorage(registeredUsersCopy);
+    dispatch(
+      registerUser({
+        newUser: { username: username, password: password, posts: [] },
+        resetFormData,
+      })
+    );
   };
 
-  const resetFormData = () => {
+  const resetFormData = (willReset) => {
+    if (!willReset) return;
+
     setPassword("");
     setUsername("");
     setconfirmPassword("");
-    formRef.current.reset();
+    formRef.current.reset("");
   };
 
   const backHome = () => {

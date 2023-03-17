@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { changePassWord } from "../store/reducers/registeredUsersReducer";
 import SideImage from "./SideImage";
+import alertValidation from "./alertValidation";
 import "../styles/ForgotPassword.css";
 
 const ForgotPassword = () => {
@@ -17,6 +18,15 @@ const ForgotPassword = () => {
 
   const resetPassword = (e) => {
     e.preventDefault();
+
+    if (password !== confirmPassword)
+      return alertValidation("warning", "Passwords do not match!");
+
+    if (password.length < 6)
+      return alertValidation(
+        "warning",
+        "Use a password with at least 6 numbers!"
+      );
 
     dispatch(
       changePassWord({
