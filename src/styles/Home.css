@@ -151,6 +151,15 @@
   }
 
   .posts-wrapper {
-    width: 380px;
+    width: auto;
+  }
+
+  .text-area-container textarea{
+    min-width: 300px;
+    max-width: 300px;
+  }
+
+  .text-area-container{
+    width: auto;
   }
 }
