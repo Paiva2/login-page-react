@@ -9,7 +9,9 @@ const SideImage = ({ text }) => {
         <UserGreeting greetingText={text} />
       </div>
       <div className="bottom-text">
-        <a href="https://github.com/Paiva2">Check my Github</a>
+        <a className="github-link" href="https://github.com/Paiva2">
+          Check my Github
+        </a>
       </div>
     </div>
   );

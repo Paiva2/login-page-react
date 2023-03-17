@@ -22,12 +22,3 @@ body {
   outline: none;
 }
 
-a:visited {
-  color: black;
-}
-
-a:link {
-  text-decoration: none;
-  font-weight: bold;
-  color: black;
-}

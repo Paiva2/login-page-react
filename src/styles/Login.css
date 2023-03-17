@@ -1,3 +1,15 @@
+.login-links:link {
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.login-links:visited {
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+}
+
 .container {
   display: flex;
   align-items: center;
